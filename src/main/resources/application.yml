@@ -2,10 +2,10 @@ spring:
   datasource:
     hikari:
       maximum-pool-size: 4
-    url: PG_URL
-    username: PG_USERNAME
-    password: PG_PASSWORD
+    url: ${PG_URL}
+    username: ${PG_USERNAME}
+    password: ${PG_PASSWORD}
 server:
-  port: 9001
+  port: 8080
 
 
