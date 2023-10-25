@@ -1,11 +1,18 @@
+#prod
 spring:
   datasource:
-    hikari:
-      maximum-pool-size: 4
     url: ${PG_URL}
     username: ${PG_USERNAME}
     password: ${PG_PASSWORD}
+    hikari:
+      maximum-pool-size: 4
+
 server:
   port: 8080
 
+mybatis:
+  type-aliases-package: com.github.talkiebox.oq.model
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
 
