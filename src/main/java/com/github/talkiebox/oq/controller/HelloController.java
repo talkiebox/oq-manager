@@ -28,8 +28,8 @@ public class HelloController {
 
     @GetMapping(path = "/")
     public String main(Model model) {
-        model.addAttribute("data", "Hello");
-        return "hello";
+//        model.addAttribute("data", "Hello");
+        return "index";
     }
 
 }
