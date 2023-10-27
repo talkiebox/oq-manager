@@ -1,11 +1,11 @@
-package com.github.talkiebox.oq.model;
+package com.github.talkiebox.oq.domain;
 
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
-public class AccountTestVO {
+public class AccountTest {
     private int userId;
     private String username;
     private String userPwd;

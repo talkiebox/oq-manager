@@ -1,6 +1,6 @@
 package com.github.talkiebox.oq.service;
 
-import com.github.talkiebox.oq.model.AccountTestVO;
+import com.github.talkiebox.oq.domain.AccountTest;
 import com.github.talkiebox.oq.repository.AccountTestMapper;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ public class AccountTestServiceImpl implements AccountTestService {
     }
 
     @Transactional(readOnly = true)
-    public List<AccountTestVO> selectAccountTestList() {
+    public List<AccountTest> selectAccountTestList() {
         AccountTestMapper atm = sqlSession.getMapper(AccountTestMapper.class);
         return atm.selectAccountTestList();
     }
