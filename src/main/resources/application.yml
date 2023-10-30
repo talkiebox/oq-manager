@@ -1,15 +1,37 @@
 #prod
+#spring:
+#  datasource:
+#    url: ${PG_URL}
+#    username: ${PG_USERNAME}
+#    password: ${PG_PASSWORD}
+#    hikari:
+#      maximum-pool-size: 4
+#
+#server:
+#  port: 8080
+#
+#mybatis:
+#  type-aliases-package: com.github.talkiebox.oq.domain
+#  mapper-locations: classpath:mapper/*.xml
+#  configuration:
+#    map-underscore-to-camel-case: true
+
+#local
 spring:
   datasource:
-    url: ${PG_URL}
-    username: ${PG_USERNAME}
-    password: ${PG_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://svc.sel5.cloudtype.app:30528/postgres
+    username: hawawa
+    password: hawawa112
     hikari:
       maximum-pool-size: 4
-
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: update
+    show-sql: true
 server:
-  port: 8080
-
+  port: 9001
 mybatis:
   type-aliases-package: com.github.talkiebox.oq.domain
   mapper-locations: classpath:mapper/*.xml
