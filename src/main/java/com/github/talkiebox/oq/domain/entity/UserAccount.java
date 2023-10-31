@@ -22,5 +22,5 @@ public class UserAccount {
     private String password;
     private String nickname;
 
-    private UserRole role;
+    private UserRole userRole;
 }
