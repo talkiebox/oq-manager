@@ -13,6 +13,13 @@ spring:
       ddl-auto: update
     show-sql: true
 server:
+<<<<<<< HEAD
   port: 8080
   session:
     tracking-modes: cookie
+=======
+  servlet:
+    session:
+      tracking-modes: cookie
+
+>>>>>>> 2455ef03be2ad648d7618b42c8f2bc7dcdd49ce5
