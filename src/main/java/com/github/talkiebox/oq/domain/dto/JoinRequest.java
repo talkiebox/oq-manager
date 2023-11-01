@@ -28,7 +28,7 @@ public class JoinRequest {
                 .loginId(this.loginId)
                 .password(this.password)
                 .nickname(this.nickname)
-                .userRole(UserRole.USER)
+                .userRole("USER")
                 .build();
     }
 
@@ -38,7 +38,7 @@ public class JoinRequest {
                 .loginId(this.loginId)
                 .password(encodedPassword)
                 .nickname(this.nickname)
-                .userRole(UserRole.USER)
+                .userRole("USER")
                 .build();
     }
 }

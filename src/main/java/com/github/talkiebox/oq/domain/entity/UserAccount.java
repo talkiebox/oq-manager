@@ -7,6 +7,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
+import java.util.Date;
+
 @Entity
 @Builder
 @Getter
@@ -21,6 +23,7 @@ public class UserAccount {
     private String loginId;
     private String password;
     private String nickname;
-
-    private UserRole userRole;
+    private String userRole;
+    private Date createDate;
+    private Date expireDate;
 }

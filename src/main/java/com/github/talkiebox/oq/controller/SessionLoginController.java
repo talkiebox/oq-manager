@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 public class SessionLoginController {
@@ -22,13 +24,13 @@ public class SessionLoginController {
 
     @GetMapping(value = "/")
     public String home(Model model, @SessionAttribute(name = "userId", required = false) Long userId) {
-        model.addAttribute("loginType", "session-login");
         model.addAttribute("pageName", "OQ");
 
         UserAccount loginUser = userAccountService.getLoginUserById(userId);
 
         if (loginUser != null) {
             model.addAttribute("nickname", loginUser.getNickname());
+            model.addAttribute("userRole", loginUser.getUserRole());
         } else {
             return "redirect:/login";
         }
@@ -38,16 +40,13 @@ public class SessionLoginController {
 
     @GetMapping(value = "/login")
     public String loginPage(Model model) {
-        model.addAttribute("loginType", "session-login");
         model.addAttribute("pageName", "OQ");
-
         model.addAttribute("loginRequest", new LoginRequest());
         return "login";
     }
 
     @PostMapping(value = "/login")
     public String login(@ModelAttribute LoginRequest loginRequest, BindingResult bindingResult, HttpServletRequest httpServletRequest, Model model) {
-        model.addAttribute("loginType", "session-login");
         model.addAttribute("pageName", "OQ");
 
         UserAccount userAccount = userAccountService.login(loginRequest);
@@ -73,7 +72,6 @@ public class SessionLoginController {
 
     @GetMapping(value = "/logout")
     public String logout(HttpServletRequest request, Model model) {
-        model.addAttribute("loginType", "session-login");
         model.addAttribute("pageName", "OQ");
 
         // Session이 없으면 null return
@@ -83,6 +81,26 @@ public class SessionLoginController {
         }
 
         return "redirect:/";
+    }
+
+    @GetMapping(value = "/users")
+    public String usersPage(Model model, @SessionAttribute(name = "userId", required = false) Long userId) {
+        model.addAttribute("pageName", "OQ");
+
+        UserAccount loginUser = userAccountService.getLoginUserById(userId);
+
+        if (loginUser != null) {
+            model.addAttribute("nickname", loginUser.getNickname());
+            model.addAttribute("userRole", loginUser.getUserRole());
+        } else {
+            return "redirect:/login";
+        }
+
+        List<UserAccount> users = userAccountService.users();
+
+        model.addAttribute("users", users);
+
+        return "users";
     }
 
 

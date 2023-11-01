@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -38,6 +39,10 @@ public class UserAccountService {
     // 암호화 회원가입
     public void join2(JoinRequest req) {
         // TODO: 암호화 회원가입 구현해야함
+    }
+
+    public List<UserAccount> users() {
+        return userAccountRepository.findAll();
     }
 
     public UserAccount login(LoginRequest req) {
