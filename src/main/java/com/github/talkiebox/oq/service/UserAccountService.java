@@ -32,7 +32,7 @@ public class UserAccountService {
     }
 
     // 암호화 X 회원가입
-    public void join(JoinRequest req) {
+    public void register(JoinRequest req) {
         userAccountRepository.save(req.toEntity());
     }
 

@@ -1,14 +1,18 @@
 package com.github.talkiebox.oq.controller;
 
+import com.github.talkiebox.oq.domain.dto.JoinRequest;
 import com.github.talkiebox.oq.domain.dto.LoginRequest;
 import com.github.talkiebox.oq.domain.entity.UserAccount;
 import com.github.talkiebox.oq.service.UserAccountService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.mapping.Join;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -101,6 +105,44 @@ public class SessionLoginController {
         model.addAttribute("users", users);
 
         return "users";
+    }
+
+    @GetMapping(value = "/register")
+    public String registerPage(Model model, @SessionAttribute(name = "userId", required = false) Long userId) {
+        model.addAttribute("pageName", "OQ");
+        model.addAttribute("joinRequest", new JoinRequest());
+
+        UserAccount loginUser = userAccountService.getLoginUserById(userId);
+
+        if (loginUser != null) {
+            model.addAttribute("nickname", loginUser.getNickname());
+            model.addAttribute("userRole", loginUser.getUserRole());
+        } else {
+            return "redirect:/login";
+        }
+
+        return "register";
+    }
+
+    @PostMapping(value = "/register")
+    public String register(@Valid @ModelAttribute JoinRequest joinRequest, BindingResult bindingResult, Model model) {
+        model.addAttribute("pageName", "OQ");
+
+        // loginId 중복 체크
+        if(userAccountService.checkLoginIdDuplicate(joinRequest.getLoginId())) {
+            bindingResult.addError(new FieldError("joinRequest", "loginId", "로그인 아이디가 중복됩니다."));
+        }
+        // 닉네임 중복 체크
+        if(userAccountService.checkNicknameDuplicate(joinRequest.getNickname())) {
+            bindingResult.addError(new FieldError("joinRequest", "nickname", "닉네임이 중복됩니다."));
+        }
+
+        if(bindingResult.hasErrors()) {
+            return "redirect:/register";
+        }
+
+        userAccountService.register(joinRequest);
+        return "redirect:/";
     }
 
 

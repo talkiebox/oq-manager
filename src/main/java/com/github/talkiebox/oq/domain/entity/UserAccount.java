@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -24,6 +25,6 @@ public class UserAccount {
     private String password;
     private String nickname;
     private String userRole;
-    private Date createDate;
-    private Date expireDate;
+    private LocalDate createDate;
+    private LocalDate expireDate;
 }
