@@ -43,7 +43,7 @@
                 </div>
                 <form class="user" id="frm" th:method="post" th:action="|@{/login}|" th:object="${loginRequest}">
                   <div class="form-group">
-                    <input type="email" class="form-control form-control-user"
+                    <input type="text" class="form-control form-control-user"
                            id="loginId" aria-describedby="emailHelp"
                            placeholder="Username" th:field="*{loginId}">
                   </div>

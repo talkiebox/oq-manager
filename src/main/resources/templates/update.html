@@ -148,29 +148,36 @@
               <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">
-                  <div class="col-lg-6 d-none d-lg-block bg-register-image"></div>
+                  <div class="col-lg-6 d-none d-lg-block bg-password-image"></div>
                   <div class="col-lg-6">
                     <div class="p-5">
                       <div class="text-center">
-                        <h1 class="h4 text-gray-900 mb-4">New Hero!</h1>
+                        <h1 class="h4 text-gray-900 mb-4">Update User Info</h1>
                       </div>
-                      <form class="user" id="frm" th:method="post" th:action="|@{/register}|" th:object="${joinRequest}">
+                      <form class="user" id="frm" th:method="post" th:action="|@{/update}|" th:object="${updateRequest}">
                         <div class="form-group">
+                          <label for="loginId">id</label>
                           <input type="text" class="form-control form-control-user"
-                                 id="loginId" aria-describedby="emailHelp"
-                                 placeholder="Username" th:field="*{loginId}">
+                                 id="loginId" th:value="${updateUser.loginId}">
                         </div>
                         <div class="form-group">
-                          <input type="password" class="form-control form-control-user"
-                                 id="password" placeholder="Password" th:field="*{password}">
+                          <label for="password">password</label>
+                          <input type="text" class="form-control form-control-user"
+                                 id="password" th:value="${updateUser.password}">
                         </div>
                         <div class="form-group">
+                          <label for="nickname">nickname</label>
                           <input type="text" class="form-control form-control-user"
-                                 id="nickname" placeholder="Nickname" th:field="*{nickname}">
+                                 id="nickname" th:value="${updateUser.nickname}">
+                        </div>
+                        <div class="form-group">
+                          <label for="expireDate">expire date</label>
+                          <input type="text" class="form-control form-control-user"
+                                 id="expireDate" th:value="${updateUser.expireDate}">
                         </div>
 
                         <a href="#" onclick="return chk_form()" class="btn btn-primary btn-user btn-block">
-                          Register
+                          Update
                         </a>
                       </form>
                       <div class="text-center">

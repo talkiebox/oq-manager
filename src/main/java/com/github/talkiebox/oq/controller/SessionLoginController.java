@@ -2,6 +2,7 @@ package com.github.talkiebox.oq.controller;
 
 import com.github.talkiebox.oq.domain.dto.JoinRequest;
 import com.github.talkiebox.oq.domain.dto.LoginRequest;
+import com.github.talkiebox.oq.domain.dto.UpdateRequest;
 import com.github.talkiebox.oq.domain.entity.UserAccount;
 import com.github.talkiebox.oq.service.UserAccountService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,10 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -143,6 +141,28 @@ public class SessionLoginController {
 
         userAccountService.register(joinRequest);
         return "redirect:/";
+    }
+
+    @GetMapping(value = "/update")
+    public String updatePage(@SessionAttribute(name = "userId", required = false) Long userId, @RequestParam Long id, Model model) {
+        model.addAttribute("pageName", "OQ");
+
+        UserAccount loginUser = userAccountService.getLoginUserById(userId);
+        model.addAttribute("updateRequest", new UpdateRequest());
+
+        if (loginUser != null) {
+            model.addAttribute("nickname", loginUser.getNickname());
+            model.addAttribute("userRole", loginUser.getUserRole());
+        } else {
+            return "redirect:/login";
+        }
+
+        UserAccount updateUser = userAccountService.getLoginUserById(id);
+
+        System.out.println(updateUser.getNickname());
+        model.addAttribute("updateUser", updateUser);
+
+        return "update";
     }
 
 
