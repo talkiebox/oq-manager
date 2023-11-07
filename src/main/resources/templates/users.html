@@ -174,7 +174,7 @@
                   </tr>
                 </tfoot>
                 <tbody>
-                  <tr th:each="user : ${users}">
+                  <tr style="cursor: pointer;" th:each="user : ${users}" th:onclick="|location.href='@{update(id=${user.id})}'|">
                     <td><span th:text="${user.loginId}"></span></td>
                     <td><span th:text="${user.password}"></span></td>
                     <td><span th:text="${user.nickname}"></span></td>

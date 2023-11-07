@@ -1,29 +1,10 @@
 #prod
-#spring:
-#  datasource:
-#    driver-class-name: org.postgresql.Driver
-#    url: ${PG_URL}
-#    username: ${PG_USERNAME}
-#    password: ${PG_PASSWORD}
-#    hikari:
-#      maximum-pool-size: 4
-#  jpa:
-#    database: postgresql
-#    hibernate:
-#      ddl-auto: update
-#    show-sql: true
-#server:
-#  servlet:
-#    session:
-#      tracking-modes: cookie
-
-#local
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://svc.sel5.cloudtype.app:30528/postgres
-    username: hawawa
-    password: hawawa112
+    url: ${PG_URL}
+    username: ${PG_USERNAME}
+    password: ${PG_PASSWORD}
     hikari:
       maximum-pool-size: 4
   jpa:
@@ -32,7 +13,6 @@ spring:
       ddl-auto: update
     show-sql: true
 server:
-  port: 9001
   servlet:
     session:
       tracking-modes: cookie
