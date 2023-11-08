@@ -157,21 +157,22 @@
                       <form class="form-horizontal" id="frm" th:method="post" th:action="|@{/update}|" th:object="${updateRequest}">
                         <div class="mb-3 row">
                           <input type="text" class="form-control"
-                                 id="loginId" th:value="${updateUser.loginId}">
+                                 id="loginId" name="loginId" th:value="${updateUser.loginId}"/>
                         </div>
                         <div class="mb-3 row">
                           <input type="text" class="form-control form-control-user"
-                                 id="password" th:value="${updateUser.password}">
+                                 id="password" name="password" th:value="${updateUser.password}"/>
                         </div>
                         <div class="mb-3 row">
                           <input type="text" class="form-control form-control-user"
-                                 id="nickname" th:value="${updateUser.nickname}">
+                                 id="nickname" name="nickname" th:value="${updateUser.nickname}"/>
                         </div>
                         <div class="mb-3 row">
                           <input type="text" class="form-control form-control-user"
-                                 id="expireDate" th:value="${updateUser.expireDate}">
+                                 id="expireDate" name="expireDate" th:value="${updateUser.expireDate}"/>
                         </div>
-                        <a href="#" class="btn btn-primary btn-icon-split">
+                        <input type="hidden" id="id" name="id" th:value="${updateUser.id}"/>
+                        <a href="#" onclick="return chk_form()" class="btn btn-primary btn-icon-split">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-flag"></i>
                                         </span>

@@ -2,8 +2,10 @@ package com.github.talkiebox.oq.service;
 
 import com.github.talkiebox.oq.domain.dto.JoinRequest;
 import com.github.talkiebox.oq.domain.dto.LoginRequest;
+import com.github.talkiebox.oq.domain.dto.UpdateRequest;
 import com.github.talkiebox.oq.domain.entity.UserAccount;
 import com.github.talkiebox.oq.repository.UserAccountRepository;
+import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +19,7 @@ import java.util.Optional;
 public class UserAccountService {
 
     private final UserAccountRepository userAccountRepository;
+    private final EntityManager entityManager;
 
     // Spring Security를 사용한 로그인 구현 시 사용
     // private final BCryptPasswordEncoder encoder;
@@ -81,6 +84,20 @@ public class UserAccountService {
         }
 
         return optionalUser.get();
+    }
+
+    public UserAccount update(UpdateRequest req) {
+
+        System.out.println("getLoginId: " + req.getLoginId());
+        System.out.println("getNickname: " + req.getNickname());
+
+        UserAccount userAccount = userAccountRepository.findByLoginIdNoOpt(req.getId());
+        userAccount.setLoginId(req.getLoginId());
+        userAccount.setPassword(req.getPassword());
+        userAccount.setNickname(req.getNickname());
+        userAccount.setExpireDate(req.getExpireDate());
+
+        return userAccount;
     }
 
 }

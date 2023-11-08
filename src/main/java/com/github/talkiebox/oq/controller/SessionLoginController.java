@@ -140,7 +140,7 @@ public class SessionLoginController {
         }
 
         userAccountService.register(joinRequest);
-        return "redirect:/";
+        return "redirect:/users";
     }
 
     @GetMapping(value = "/update")
@@ -148,7 +148,7 @@ public class SessionLoginController {
         model.addAttribute("pageName", "OQ");
 
         UserAccount loginUser = userAccountService.getLoginUserById(userId);
-        model.addAttribute("updateRequest", new UpdateRequest());
+//        model.addAttribute("updateRequest", new UpdateRequest());
 
         if (loginUser != null) {
             model.addAttribute("nickname", loginUser.getNickname());
@@ -163,6 +163,20 @@ public class SessionLoginController {
         model.addAttribute("updateUser", updateUser);
 
         return "update";
+    }
+
+    @PostMapping(value = "/update")
+    public String update(@ModelAttribute UpdateRequest updateRequest) {
+
+        UserAccount userAccount;
+
+        System.out.println("PoMap");
+        System.out.println(updateRequest.getLoginId());
+        System.out.println(updateRequest.getNickname());
+
+        userAccount = userAccountService.update(updateRequest);
+
+        return "redirect:/users";
     }
 
 

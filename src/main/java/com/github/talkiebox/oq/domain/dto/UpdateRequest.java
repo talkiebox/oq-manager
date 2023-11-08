@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class UpdateRequest {
 
+    private Long id;
     private String loginId;
     private String password;
     private String nickname;
