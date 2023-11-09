@@ -173,24 +173,28 @@
                         </div>
                         <input type="hidden" id="id" name="id" th:value="${updateUser.id}"/>
                         <a href="#" onclick="return chk_form()" class="btn btn-primary btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-flag"></i>
-                                        </span>
+                          <span class="icon text-white-50">
+                              <i class="fas fa-flag"></i>
+                          </span>
                           <span class="text">Save</span>
                         </a>
                         <a href="/users" class="btn btn-secondary btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-arrow-right"></i>
-                                        </span>
+                          <span class="icon text-white-50">
+                              <i class="fas fa-arrow-right"></i>
+                          </span>
                           <span class="text">Cancel</span>
                         </a>
-                        <a href="#" class="btn btn-danger btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-trash"></i>
-                                        </span>
+                        <a href="#" onclick="return deletePost()" class="btn btn-danger btn-icon-split">
+                          <span class="icon text-white-50">
+                              <i class="fas fa-trash"></i>
+                          </span>
                           <span class="text">Delete</span>
                         </a>
                       </form>
+                      <form id="deleteForm" th:method="post" th:action="|@{/delete}|" th:object="${updateRequest}">
+                        <input type="hidden" id="id" name="id" th:value="${updateUser.id}"/>
+                      </form>
+
                       <div class="text-center">
                       </div>
                     </div>
@@ -261,7 +265,7 @@
 <script src="/bootstrap/js/sb-admin-2.min.js"></script>
 
 <script>
-    function chk_form() {
+  function chk_form() {
     if(document.getElementById("loginId").value==''){
         alert("아이디를 입력해주세요.");
         return false;
@@ -275,7 +279,14 @@
         return false;
     }
     document.getElementById('frm').submit();
+  }
+
+  function deletePost() {
+    if (!confirm("삭제할까요?")) {
+        return false;
     }
+    document.getElementById('deleteForm').submit();
+  }
 </script>
 </body>
 

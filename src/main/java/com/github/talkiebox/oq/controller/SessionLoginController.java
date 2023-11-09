@@ -170,11 +170,16 @@ public class SessionLoginController {
 
         UserAccount userAccount;
 
-        System.out.println("PoMap");
-        System.out.println(updateRequest.getLoginId());
-        System.out.println(updateRequest.getNickname());
-
         userAccount = userAccountService.update(updateRequest);
+
+        return "redirect:/users";
+    }
+
+    @PostMapping(value = "/delete")
+    public String delete(@ModelAttribute UpdateRequest updateRequest) {
+
+        UserAccount userAccount;
+        userAccountService.deleteById(updateRequest.getId());
 
         return "redirect:/users";
     }
