@@ -72,19 +72,19 @@
     <!-- Nav Item - Dashboard -->
 
     <li class="nav-item">
-      <a class="nav-link" href="/users">
+      <a class="nav-link" href="/oq/users">
         <i class="fas fa-fw fa-table"></i>
         <span>Users</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/register">
+      <a class="nav-link" href="/oq/register">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Register</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link collapsed" href="/logs">
+      <a class="nav-link collapsed" href="/oq/logs">
         <i class="fas fa-fw fa-wrench"></i>
         <span>Logs</span>
       </a>
@@ -154,7 +154,7 @@
                       <div class="text-center">
                         <h1 class="h4 text-gray-900 mb-4">New Hero!</h1>
                       </div>
-                      <form class="user" id="frm" th:method="post" th:action="|@{/register}|" th:object="${joinRequest}">
+                      <form class="user" id="frm" th:method="post" th:action="|@{/oq/register}|" th:object="${joinRequest}">
                         <div class="form-group">
                           <input type="text" class="form-control form-control-user"
                                  id="loginId" aria-describedby="emailHelp"

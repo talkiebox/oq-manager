@@ -9,7 +9,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.mapping.Join;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,13 +17,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequestMapping(value = "/oq")
 @Controller
 @RequiredArgsConstructor
 public class SessionLoginController {
 
     private final UserAccountService userAccountService;
 
-    @GetMapping(value = "/")
+    @GetMapping(value = {"", "/"})
     public String home(Model model, @SessionAttribute(name = "userId", required = false) Long userId) {
         model.addAttribute("pageName", "OQ");
 
@@ -34,7 +34,7 @@ public class SessionLoginController {
             model.addAttribute("nickname", loginUser.getNickname());
             model.addAttribute("userRole", loginUser.getUserRole());
         } else {
-            return "redirect:/login";
+            return "redirect:/oq/login";
         }
 
         return "home";
@@ -69,7 +69,7 @@ public class SessionLoginController {
         // 30분 유지
         session.setMaxInactiveInterval(1800);
 
-        return "redirect:/";
+        return "redirect:/oq";
     }
 
     @GetMapping(value = "/logout")
@@ -82,7 +82,7 @@ public class SessionLoginController {
             session.invalidate();
         }
 
-        return "redirect:/";
+        return "redirect:/oq";
     }
 
     @GetMapping(value = "/users")
@@ -95,7 +95,7 @@ public class SessionLoginController {
             model.addAttribute("nickname", loginUser.getNickname());
             model.addAttribute("userRole", loginUser.getUserRole());
         } else {
-            return "redirect:/login";
+            return "redirect:/oq/login";
         }
 
         List<UserAccount> users = userAccountService.users();
@@ -116,7 +116,7 @@ public class SessionLoginController {
             model.addAttribute("nickname", loginUser.getNickname());
             model.addAttribute("userRole", loginUser.getUserRole());
         } else {
-            return "redirect:/login";
+            return "redirect:/oq/login";
         }
 
         return "register";
@@ -136,11 +136,11 @@ public class SessionLoginController {
         }
 
         if(bindingResult.hasErrors()) {
-            return "redirect:/register";
+            return "redirect:/oq/register";
         }
 
         userAccountService.register(joinRequest);
-        return "redirect:/users";
+        return "redirect:/oq/users";
     }
 
     @GetMapping(value = "/update")
@@ -154,7 +154,7 @@ public class SessionLoginController {
             model.addAttribute("nickname", loginUser.getNickname());
             model.addAttribute("userRole", loginUser.getUserRole());
         } else {
-            return "redirect:/login";
+            return "redirect:/oq/login";
         }
 
         UserAccount updateUser = userAccountService.getLoginUserById(id);
@@ -172,7 +172,7 @@ public class SessionLoginController {
 
         userAccount = userAccountService.update(updateRequest);
 
-        return "redirect:/users";
+        return "redirect:/oq/users";
     }
 
     @PostMapping(value = "/delete")
@@ -181,7 +181,7 @@ public class SessionLoginController {
         UserAccount userAccount;
         userAccountService.deleteById(updateRequest.getId());
 
-        return "redirect:/users";
+        return "redirect:/oq/users";
     }
 
 

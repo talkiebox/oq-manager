@@ -8,7 +8,6 @@ import jakarta.persistence.Id;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Builder
@@ -28,4 +27,9 @@ public class UserAccount {
     private String userRole;
     private LocalDate createDate;
     private LocalDate expireDate;
+
+    public UserAccount(String loginId, String nickname) {
+        this.loginId = loginId;
+        this.nickname = nickname;
+    }
 }

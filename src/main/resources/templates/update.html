@@ -72,19 +72,19 @@
     <!-- Nav Item - Dashboard -->
 
     <li class="nav-item">
-      <a class="nav-link" href="/users">
+      <a class="nav-link" href="/oq/users">
         <i class="fas fa-fw fa-table"></i>
         <span>Users</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/register">
+      <a class="nav-link" href="/oq/register">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Register</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link collapsed" href="/logs">
+      <a class="nav-link collapsed" href="/oq/logs">
         <i class="fas fa-fw fa-wrench"></i>
         <span>Logs</span>
       </a>
@@ -154,7 +154,7 @@
                       <div class="text-center">
                         <h1 class="h4 text-gray-900 mb-4">Update User Info</h1>
                       </div>
-                      <form class="form-horizontal" id="frm" th:method="post" th:action="|@{/update}|" th:object="${updateRequest}">
+                      <form class="form-horizontal" id="frm" th:method="post" th:action="|@{/oq/update}|" th:object="${updateRequest}">
                         <div class="mb-3 row">
                           <input type="text" class="form-control"
                                  id="loginId" name="loginId" th:value="${updateUser.loginId}"/>
@@ -178,7 +178,7 @@
                           </span>
                           <span class="text">Save</span>
                         </a>
-                        <a href="/users" class="btn btn-secondary btn-icon-split">
+                        <a href="/oq/users" class="btn btn-secondary btn-icon-split">
                           <span class="icon text-white-50">
                               <i class="fas fa-arrow-right"></i>
                           </span>
@@ -191,7 +191,7 @@
                           <span class="text">Delete</span>
                         </a>
                       </form>
-                      <form id="deleteForm" th:method="post" th:action="|@{/delete}|" th:object="${updateRequest}">
+                      <form id="deleteForm" th:method="post" th:action="|@{/oq/delete}|" th:object="${updateRequest}">
                         <input type="hidden" id="id" name="id" th:value="${updateUser.id}"/>
                       </form>
 
