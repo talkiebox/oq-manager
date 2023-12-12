@@ -1,13 +1,15 @@
 package com.github.talkiebox.oq.domain.dto;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
-public class LoginResponse {
+public class PotLoginResponse {
 
     private String loginId;
     private String nickname;

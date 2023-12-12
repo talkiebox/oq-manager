@@ -14,20 +14,17 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserAccount {
+public class LoginLog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String loginId;
-    private String password;
     private String nickname;
-    private String userRole;
-    private LocalDate createDate;
-    private LocalDate expireDate;
+    private String ipAddr;
+    private boolean loginSuccess;
+    private String msg;
+    private String autopotVersion;
+    private LocalDate loginDate;
 
-    public UserAccount(String loginId, String nickname) {
-        this.loginId = loginId;
-        this.nickname = nickname;
-    }
 }

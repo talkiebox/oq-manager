@@ -37,7 +37,7 @@
 #    session:
 #      tracking-modes: cookie
 
-#local-cloudtype
+#local-aws
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
