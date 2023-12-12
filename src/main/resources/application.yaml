@@ -1,41 +1,22 @@
-#cloudtype
-#spring:
-#  datasource:
-#    driver-class-name: org.postgresql.Driver
-#    url: ${PG_URL}
-#    username: ${PG_USERNAME}
-#    password: ${PG_PASSWORD}
-#    hikari:
-#      maximum-pool-size: 4
-#  jpa:
-#    database: postgresql
-#    hibernate:
-#      ddl-auto: update
-#    show-sql: true
-#server:
-#  servlet:
-#    session:
-#      tracking-modes: cookie
-
 #aws
-#spring:
-#  datasource:
-#    driver-class-name: org.postgresql.Driver
-#    url: jdbc:postgresql://localhost:5432/postgres
-#    username: hawawa
-#    password: rkfk112
-#    hikari:
-#      maximum-pool-size: 4
-#  jpa:
-#    database: postgresql
-#    hibernate:
-#      ddl-auto: update
-#    show-sql: true
-#server:
-#  port: 8080
-#  servlet:
-#    session:
-#      tracking-modes: cookie
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: hawawa
+    password: rkfk112
+    hikari:
+      maximum-pool-size: 4
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+server:
+  port: 8080
+  servlet:
+    session:
+      tracking-modes: cookie
 
 #local-aws
 spring:
