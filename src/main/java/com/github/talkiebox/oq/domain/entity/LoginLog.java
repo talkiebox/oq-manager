@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Builder
@@ -25,6 +26,6 @@ public class LoginLog {
     private boolean loginSuccess;
     private String msg;
     private String autopotVersion;
-    private LocalDate loginDate;
+    private LocalDateTime loginDate;
 
 }
