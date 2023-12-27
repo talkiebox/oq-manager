@@ -3,7 +3,9 @@ package com.github.talkiebox.oq.controller;
 import com.github.talkiebox.oq.domain.dto.JoinRequest;
 import com.github.talkiebox.oq.domain.dto.LoginRequest;
 import com.github.talkiebox.oq.domain.dto.UpdateRequest;
+import com.github.talkiebox.oq.domain.entity.LoginLog;
 import com.github.talkiebox.oq.domain.entity.UserAccount;
+import com.github.talkiebox.oq.service.LoginLogService;
 import com.github.talkiebox.oq.service.UserAccountService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -23,6 +25,7 @@ import java.util.List;
 public class SessionLoginController {
 
     private final UserAccountService userAccountService;
+    private final LoginLogService loginLogService;
 
     @GetMapping(value = {"", "/"})
     public String home(Model model, @SessionAttribute(name = "userId", required = false) Long userId) {
@@ -103,6 +106,26 @@ public class SessionLoginController {
         model.addAttribute("users", users);
 
         return "users";
+    }
+
+    @GetMapping(value = "/logs")
+    public String logsPage(Model model, @SessionAttribute(name = "userId", required = false) Long userId) {
+        model.addAttribute("pageName", "OQ");
+
+        UserAccount loginUser = userAccountService.getLoginUserById(userId);
+
+        if (loginUser != null) {
+            model.addAttribute("nickname", loginUser.getNickname());
+            model.addAttribute("userRole", loginUser.getUserRole());
+        } else {
+            return "redirect:/oq/login";
+        }
+
+        List<LoginLog> logs = loginLogService.logs();
+
+        model.addAttribute("logs", logs);
+
+        return "logs";
     }
 
     @GetMapping(value = "/register")
